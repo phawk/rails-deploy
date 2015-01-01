@@ -1,2 +1,5 @@
+- name: Update APT package cache
+  action: apt update_cache=yes
+
 - name: Install basic dev tools
   action: apt pkg=build-essential state=installed

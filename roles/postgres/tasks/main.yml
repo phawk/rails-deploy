@@ -45,8 +45,3 @@
     type=database
     obj={{ pg.db }}
     role={{ pg.user }}
-
-handlers:
-- name: postgresql restart
-  action: service name=postgresql state=restarted
-  sudo: true
