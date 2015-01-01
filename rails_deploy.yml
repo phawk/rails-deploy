@@ -1,14 +1,6 @@
 ---
-- hosts: bootstrap
-  remote_user: root
-  vars_files:
-    - vars/all.yml
-  roles:
-    - bootstrap
-
 - hosts: appservers
   sudo: true
-  remote_user: {{ deploy_user }}
   vars_files:
     - vars/all.yml
   roles:
