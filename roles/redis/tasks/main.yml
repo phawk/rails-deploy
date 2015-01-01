@@ -1,0 +1,12 @@
+- name: Add Chris Lea PPA for redis-server
+  apt_repository:
+    repo='ppa:chris-lea/redis-server'
+    state=present
+
+- name: update apt-cache
+  action: apt update_cache=yes
+
+- name: install dependencies
+  action: apt pkg={{item}} state=installed
+  with_items:
+    - redis-server

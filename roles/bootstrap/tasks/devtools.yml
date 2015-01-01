@@ -1,0 +1,2 @@
+- name: Install basic dev tools
+  action: apt pkg=build-essential state=installed

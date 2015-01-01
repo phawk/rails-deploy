@@ -1,0 +1,13 @@
+# only in ansible 1.6
+# - name: Generate en_GB.UTF-8 locale
+#   locale_gen: name=en_GB.UTF-8 state=present
+
+- name: set locale to {{locale}}
+  command: /usr/sbin/update-locale LANG={{locale}} LC_ALL={{locale}}
+
+- name: set /etc/localtime to {{ timezone }}
+  command: /bin/cp /usr/share/zoneinfo/{{ timezone }} /etc/localtime
+
+- name: set /etc/timezone to {{ timezone }}
+  template: src=etc/timezone dest=/etc/timezone
+  notify: update tzdata

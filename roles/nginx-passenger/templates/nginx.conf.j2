@@ -1,0 +1,91 @@
+user {{ nginx.user }};
+worker_processes {{ nginx.workers }};
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections {{ nginx.worker_connections }};
+    multi_accept on;
+}
+
+http {
+
+    passenger_root /usr/lib/ruby/vendor_ruby/phusion_passenger/locations.ini;
+    passenger_ruby /home/{{ deploy_user }}/.rbenv/shims/ruby;
+    passenger_nodejs /usr/bin/node;
+    passenger_default_user {{ deploy_user }};
+    passenger_friendly_error_pages off;
+
+
+    ##
+    # Basic Settings
+    ##
+
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    types_hash_max_size 2048;
+    server_tokens off;
+
+    include /etc/nginx/mime.types;
+    default_type text/html;
+
+    ##
+    # Buffers
+    ##
+
+    server_names_hash_bucket_size  64;
+    client_body_buffer_size 10K;
+    client_header_buffer_size 1k;
+    client_max_body_size 8m;
+    large_client_header_buffers 2 1k;
+
+    ##
+    # Timeouts
+    ##
+
+    client_body_timeout 12;
+    client_header_timeout 12;
+    keepalive_timeout 15;
+    send_timeout 10;
+
+
+    ##
+    # Logging Settings
+    ##
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    ##
+    # Gzip Settings
+    ##
+
+    gzip on;
+    gzip_disable "msie6";
+
+    gzip_vary on;
+    gzip_static on;
+    gzip_comp_level 2;
+    gzip_proxied any;
+    gzip_min_length 1000;
+    gzip_http_version 1.1;
+    gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+    ##
+    # SSL config
+    ##
+
+    # Optimise time to first byte
+    ssl_buffer_size 4k;
+
+    # SSL session resumption
+    ssl_session_cache    shared:SSL:10m;
+    ssl_session_timeout  10m;
+
+    ##
+    # Virtual Host Configs
+    ##
+
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+}

@@ -1,0 +1,8 @@
+---
+dependencies:
+  - { role: rbenv-ruby, version: "{{ ruby_versions[0] }}", ruby_default: "{{ ruby_versions[0] }}", when: "0 < ruby_versions|length" }
+  - { role: rbenv-ruby, version: "{{ ruby_versions[1] }}", when: "1 < ruby_versions|length" }
+  - { role: rbenv-ruby, version: "{{ ruby_versions[2] }}", when: "2 < ruby_versions|length" }
+  - { role: rbenv-ruby, version: "{{ ruby_versions[3] }}", when: "3 < ruby_versions|length" }
+  - { role: rbenv-ruby, version: "{{ ruby_versions[4] }}", when: "4 < ruby_versions|length" }
+

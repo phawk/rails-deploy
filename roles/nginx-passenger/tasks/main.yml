@@ -1,0 +1,46 @@
+- name: Remove apache2
+  apt: name=apache2 state=absent
+
+- name: install dependencies
+  action: apt pkg={{item}} state=installed
+  with_items:
+    - libv8-dev
+    - python-pycurl
+    - libcurl4-openssl-dev
+
+- name: Add key for passenger
+  apt_key: url=http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0xAC40B2F7 state=present
+
+- name: Apt via https
+  apt: name=apt-transport-https state=present
+
+- name: Apt add passenger to list
+  apt_repository: repo='deb https://oss-binaries.phusionpassenger.com/apt/passenger {{ansible_distribution_release}} main' state=present update_cache=yes
+
+- name: Install nginx
+  action: apt pkg={{ item }} state=installed
+  with_items:
+   - nginx-extras
+   - passenger
+
+- name: Create global nginx configs dir
+  file: path=/etc/nginx/global state=directory
+
+- name: Remove the default app, if exists
+  command: rm -rf /etc/nginx/sites-enabled/default
+
+- name: write the nginx config files
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+  notify:
+  - nginx restart
+
+- name: write nginx app config file
+  template: src=app.conf.j2 dest=/etc/nginx/sites-available/app.conf
+
+- name: put application live
+  file: src=/etc/nginx/sites-available/app.conf dest=/etc/nginx/sites-enabled/app.conf owner=root group=root state=link
+  notify:
+  -  nginx restart
+
+- name: start nginx
+  service: name=nginx state=started

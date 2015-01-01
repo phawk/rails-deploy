@@ -1,0 +1,3 @@
+- include: deployuser.yml tags=deployuser
+- include: locale.yml tags=locale
+- include: devtools.yml tags=devtools

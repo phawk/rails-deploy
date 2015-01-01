@@ -1,0 +1,15 @@
+---
+- hosts: appservers
+  sudo: true
+  vars_files:
+    - vars/all.yml
+  roles:
+    - bootstrap
+    - rbenv
+    - ruby-multi
+    - preinstall-gems
+    - nodejs
+    - nginx-passenger
+    - postgres
+    # - redis
+    # - memcached
