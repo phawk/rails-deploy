@@ -1,16 +1,23 @@
 ---
-- hosts: appservers
-  sudo: true
+- hosts: bootstrap
   remote_user: root
   vars_files:
     - vars/all.yml
   roles:
-    - { role: bootstrap }
-    - { role: rbenv, remote_user: '{{ deploy_user }}', sudo: true }
-    - { role: ruby-multi, remote_user: '{{ deploy_user }}', sudo: true }
-    - { role: preinstall-gems, remote_user: '{{ deploy_user }}', sudo: true }
-    - { role: nodejs, remote_user: '{{ deploy_user }}', sudo: true }
-    - { role: nginx-passenger, remote_user: '{{ deploy_user }}', sudo: true }
-    - { role: postgres, remote_user: '{{ deploy_user }}', sudo: true }
-    # - { role: redis, remote_user: '{{ deploy_user }}', sudo: true }
-    # - { role: memcached, remote_user: '{{ deploy_user }}', sudo: true }
+    - bootstrap
+
+- hosts: appservers
+  sudo: true
+  remote_user: {{ deploy_user }}
+  vars_files:
+    - vars/all.yml
+  roles:
+    - bootstrap
+    - rbenv
+    - ruby-multi
+    - preinstall-gems
+    - nodejs
+    - nginx-passenger
+    - postgres
+    # - redis
+    # - memcached

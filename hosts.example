@@ -1,1 +1,5 @@
+[bootstrap]
+127.0.0.1
+
 [appservers]
+127.0.0.1

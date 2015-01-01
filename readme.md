@@ -19,11 +19,14 @@ $ cp vars/example.yml vars/all.yml
 $ cp hosts.example hosts
 ```
 
-Edit `./vars/all.yml` to meet your requirements. Add your servers IP address to `./hosts` under `[appservers]`
+Edit `./vars/all.yml` to meet your requirements. Replace the 127.0.0.1 IP address in `./hosts` with your servers IP
 
 ```sh
-# Run the setup for your server
-$ ansible-playbook -i hosts rails_deploy.yml --user root --ask-pass
+# Run the initial boostrap for your server
+$ ansible-playbook -i hosts rails_deploy.yml -l bootstrap --ask-pass
+
+# Install all the things
+$ ansible-playbook -i hosts rails_deploy.yml -l appservers
 ```
 
 ## TODO
