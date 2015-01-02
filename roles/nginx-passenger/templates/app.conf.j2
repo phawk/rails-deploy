@@ -12,8 +12,8 @@ server {
   server_tokens off;
   root {{ deploy_dir }};
 
-  access_log  {{ deploy_dir }}/nginx.access.log;
-  error_log   {{ deploy_dir }}/nginx.error.log;
+  access_log  {{ deploy_dir }}/log/nginx.access.log;
+  error_log   {{ deploy_dir }}/log/nginx.error.log;
 
   passenger_enabled on;
   passenger_app_env production;

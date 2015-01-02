@@ -1,0 +1,12 @@
+---
+- name: Create app deploy dir
+  file: 'path={{ deploy_dir }} state=directory owner={{ deploy_user }} group={{ deploy_user }}'
+
+- name: Create folder for nginx logs
+  file: 'path={{ deploy_dir }}/log state=directory owner={{ deploy_user }} group={{ deploy_user }}'
+
+- name: Create capistrano shared folder
+  file: 'path={{ deploy_dir }}/shared state=directory owner={{ deploy_user }} group={{ deploy_user }}'
+
+- name: write .env file for app environment variables
+  template: 'src=env.j2 dest={{ deploy_dir }}/shared/.env owner={{ deploy_user }} group={{ deploy_user }}'

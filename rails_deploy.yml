@@ -4,7 +4,7 @@
   vars_files:
     - vars/all.yml
   roles:
-    - bootstrap
+    - capistrano
     - rbenv
     - ruby-multi
     - preinstall-gems

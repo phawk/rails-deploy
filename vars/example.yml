@@ -12,6 +12,10 @@ ssh_public_key_file: '/Users/me/.ssh/id_rsa.pub'
 timezone: Europe/London
 locale: en_GB.UTF-8
 
+# Set app specific environment variables
+envars:
+  - 'SECRET_KEY_BASE=please-change-me'
+
 # Setup postgres database for your app
 pg:
   db: app_live

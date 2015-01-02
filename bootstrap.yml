@@ -1,5 +1,5 @@
 ---
-- hosts: bootstrap
+- hosts: appservers
   vars_files:
     - vars/all.yml
   roles:

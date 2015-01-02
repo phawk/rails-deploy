@@ -23,10 +23,17 @@ Edit `./vars/all.yml` to meet your requirements. Replace the 127.0.0.1 IP addres
 
 ```sh
 # Run the initial boostrap for your server
-$ ansible-playbook -i hosts bootstrap.yml --ask-pass
+$ ansible-playbook -i hosts bootstrap.yml --user root --ask-pass
 
 # Install all the things
-$ ansible-playbook -i hosts rails_deploy.yml
+$ ansible-playbook -i hosts rails_deploy.yml --user deploy
+```
+
+### Deploying your code
+
+This is designed to work out of the box with capistrano for deploys. You’ll want to setup your capistrano file like so:
+
+```sh
 ```
 
 ## TODO
