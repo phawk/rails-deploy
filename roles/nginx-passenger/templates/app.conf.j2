@@ -10,7 +10,7 @@ server {
   listen {{ nginx.port }} default_server;
   server_name {{ deploy_hostname }};
   server_tokens off;
-  root {{ deploy_dir }};
+  root {{ deploy_dir }}/current/public;
 
   access_log  {{ deploy_dir }}/log/nginx.access.log;
   error_log   {{ deploy_dir }}/log/nginx.error.log;

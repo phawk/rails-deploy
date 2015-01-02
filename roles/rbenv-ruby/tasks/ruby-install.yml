@@ -1,5 +1,5 @@
 - name: Checks if target ruby is installed
-  shell: cd; bash -lc "rbenv versions | grep {{ version }} | tr '*' ' ' | sed -e 's/\s\+//' | cut -f1 -d' '"
+  shell: cd; bash -lc "/home/{{ deploy_user }}/.rbenv/bin/rbenv versions | grep {{ version }} | tr '*' ' ' | sed -e 's/\s\+//' | cut -f1 -d' '"
   register: ruby_is_installed
   tags:
     - ruby
@@ -7,7 +7,7 @@
     - install
 
 - name: Installs ruby
-  shell: cd; bash -lc "MAKEOPTS={{ rbenv_makeopts }} CONFIGURE_OPTS=--disable-install-rdoc rbenv install {{ version }}"
+  shell: cd; bash -lc "MAKEOPTS={{ rbenv_makeopts }} CONFIGURE_OPTS=--disable-install-rdoc /home/{{ deploy_user }}/.rbenv/bin/rbenv install {{ version }}"
   when: ruby_is_installed.stdout != version
   # Takes no more than 600 secs on a small VM
   async: 600

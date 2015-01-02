@@ -1,2 +1,2 @@
 - name: Sets global ruby version
-  shell: cd; bash -lc "rbenv global {{ ruby_default }}"
+  shell: cd; bash -lc "/home/{{ deploy_user }}/.rbenv/bin/rbenv global {{ ruby_default }}"

@@ -6,7 +6,7 @@
   roles:
     - capistrano
     - rbenv
-    # - ruby-multi
+    - ruby-multi
     - preinstall-gems
     - nodejs
     - nginx-passenger
