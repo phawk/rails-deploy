@@ -53,6 +53,8 @@ This is designed to work out of the box with capistrano for deploys. You’ll wa
 Add the following gems to your Gemfile and run `bundle`.
 
 ```ruby
+gem 'dotenv-rails', '~> 1.0.2'
+
 group :development do
   gem 'capistrano',  '~> 3.1'
   gem 'capistrano-rails', '~> 1.1'
