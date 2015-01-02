@@ -27,18 +27,23 @@
   - postgresql restart
 
 - name: Create deploy user db
+  sudo_user: postgres
   postgresql_db: 'name={{ deploy_user }}'
 
 - name: Create deploy_user superuser
+  sudo_user: postgres
   postgresql_user: 'name={{ deploy_user }} password=NULL role_attr_flags=SUPERUSER'
 
 - name: Create app db
+  sudo_user: postgres
   postgresql_db: 'name={{ pg.db }}'
 
 - name: Create app db user
+  sudo_user: postgres
   postgresql_user: 'name={{ pg.user }} password={{ pg.pass }}'
 
 - name: Grant all privs on app db to app db user
+  sudo_user: postgres
   postgresql_privs: >
     db=postgres
     privs=ALL
