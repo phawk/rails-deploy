@@ -48,18 +48,27 @@ Next you’ll want to add this key to your ssh keys on github (or bitbucket or w
 
 This is designed to work out of the box with capistrano for deploys. You’ll want to setup capistrano like so:
 
-#### ./Capfile
+#### Gemfile
+
+Add the following gems to your Gemfile and run `bundle`.
 
 ```ruby
-require 'capistrano/setup'
-require 'capistrano/deploy'
+group :development do
+  gem 'capistrano',  '~> 3.1'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rbenv', '~> 2.0'
+end
+```
+
+#### ./Capfile
+
+Next up make sure the following lines are uncommented from your `Capfile`.
+
+```ruby
 require 'capistrano/rbenv'
 require 'capistrano/bundler'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
-
-# Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
-Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 ```
 
 #### ./config/deploy.rb
@@ -98,6 +107,12 @@ namespace :rails do
     end
   end
 end
+```
+
+#### ./config/deploy/production.rb
+
+```ruby
+server '127.0.0.1', user: 'deploy', roles: %w{web app}
 ```
 
 ## TODO
