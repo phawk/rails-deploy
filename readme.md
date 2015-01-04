@@ -62,6 +62,8 @@ group :development do
 end
 ```
 
+Once installed run `cap install` to create capistrano configuration files and then edit each file below.
+
 #### ./Capfile
 
 Next up make sure the following lines are uncommented from your `Capfile`.
@@ -112,6 +114,8 @@ end
 ```
 
 #### ./config/deploy/production.rb
+
+Replace `127.0.0.1` with your servers IP address and update the user if you changed it from the defaults.
 
 ```ruby
 server '127.0.0.1', user: 'deploy', roles: %w{web app}
