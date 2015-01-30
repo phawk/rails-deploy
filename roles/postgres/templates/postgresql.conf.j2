@@ -56,12 +56,12 @@ external_pid_file = '/var/run/postgresql/9.3-main.pid'      # write an extra PID
 
 # - Connection Settings -
 
-listen_addresses = '127.0.0.1'      # what IP address(es) to listen on;
+listen_addresses = '{{ pg.listen_addresses }}'      # what IP address(es) to listen on;
                                     # comma-separated list of addresses;
                                     # defaults to 'localhost', '*' = all
                                     # (change requires restart)
 port = 5432             # (change requires restart)
-max_connections = 150           # (change requires restart)
+max_connections = {{ pg.max_connections }}
 # Note:  Increasing max_connections costs ~400 bytes of shared memory per
 # connection slot, plus lock space (see max_locks_per_transaction).
 #superuser_reserved_connections = 3 # (change requires restart)
@@ -171,9 +171,9 @@ temp_buffers = 8MB          # min 800kB
 
 # - Checkpoints -
 
-#checkpoint_segments = 3        # in logfile segments, min 1, 16MB each
+checkpoint_segments = 10        # in logfile segments, min 1, 16MB each
 #checkpoint_timeout = 5min      # range 30s-1h
-#checkpoint_completion_target = 0.5 # checkpoint target duration, 0.0 - 1.0
+checkpoint_completion_target = 0.9 # checkpoint target duration, 0.0 - 1.0
 #checkpoint_warning = 30s       # 0 disables
 
 # - Archiving -
