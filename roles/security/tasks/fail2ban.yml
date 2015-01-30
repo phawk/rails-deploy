@@ -1,0 +1,14 @@
+---
+- name: Install fail2ban
+  apt: pkg=fail2ban state=installed update-cache=yes
+  register: fail2ban_install
+  tags:
+    - apt
+
+- name: Install ufw-ssh ban actions
+  template: src=ufw-ssh.conf.j2 dest=/etc/fail2ban/action.d/ufw-ssh.conf
+
+- name: Install config
+  template: src=jail.local.j2 dest=/etc/fail2ban/jail.local
+  notify:
+    - reload fail2ban
