@@ -4,6 +4,7 @@
   vars_files:
     - vars/all.yml
   roles:
+    - security
     - capistrano
     - rbenv
     - ruby-multi

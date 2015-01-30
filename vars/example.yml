@@ -43,6 +43,12 @@ nginx:
   workers: 1                # workers ~= number of cores on machine
   worker_connections: 1024  # connections ~= value of ulimit -n
 
+fail2ban:
+  config:
+    ignoreip: 127.0.0.1/8
+    bantime: 600
+    maxretry: 10
+
 ruby_deps:
   - autoconf
   - automake

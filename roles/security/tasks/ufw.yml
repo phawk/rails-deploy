@@ -1,0 +1,18 @@
+---
+- name: Allow all outgoing requests
+  ufw: policy=allow direction=outgoing
+
+- name: Deny all incoming requests
+  ufw: policy=deny direction=incoming
+
+- name: Allow ssh access
+  ufw: rule=allow name=OpenSSH
+
+- name: Allow HTTP access
+  ufw: rule=allow port=80 proto=tcp
+
+- name: Allow HTTPS access
+  ufw: rule=allow port=443 proto=tcp
+
+- name: Start ufw
+  ufw: state=enabled logging=low
