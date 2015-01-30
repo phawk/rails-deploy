@@ -28,7 +28,7 @@ pg:
   db: app_live
   user: app_user
   pass: app_db_pass
-  shared_buffers: 78MB
+  shared_buffers: 128MB
 
 # Gems you want pre-installed
 preinstall_gems:
