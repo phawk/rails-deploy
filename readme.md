@@ -6,6 +6,7 @@ Ansible provisioning to setup a pre-configured Ruby/Rails server that contains t
 - Installs node.js for asset pipeline
 - Nginx + phusion passenger for serving your app
 - PostgreSQL database
+- Sets up ufw and fail2ban for basic security
 
 ## Prerequisites
 
