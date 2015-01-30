@@ -12,6 +12,13 @@ ssh_public_key_file: '/Users/me/.ssh/id_rsa.pub'
 timezone: Europe/London
 locale: en_GB.UTF-8
 
+# Swap disk
+swapfile:
+  path: /swapfile
+  size_gb: 2
+  swappiness: 10
+  vfs_cache_pressure: 50
+
 # Set app specific environment variables
 envars:
   - 'SECRET_KEY_BASE=please-change-me'

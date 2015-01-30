@@ -7,6 +7,7 @@ Ansible provisioning to setup a pre-configured Ruby/Rails server that contains t
 - Nginx + phusion passenger for serving your app
 - PostgreSQL database
 - Sets up ufw and fail2ban for basic security
+- Sets up swapon for when you run out of memory
 
 ## Prerequisites
 

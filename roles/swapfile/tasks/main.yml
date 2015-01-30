@@ -1,0 +1,40 @@
+- name: Create swap file
+  command: fallocate -l {{ swapfile.size_gb }}G {{ swapfile.path }}
+  when: ansible_swaptotal_mb < 1
+
+- name: Change swap file permissions
+  file: path={{ swapfile.path }} owner=root group=root mode=0600
+
+- name: Make swap file
+  command: mkswap {{ swapfile.path }}
+  when: ansible_swaptotal_mb < 1
+
+- name: Write swap entry in fstab
+  mount: name=none
+         src={{ swapfile.path }}
+         fstype=swap
+         opts=sw
+         passno=0
+         dump=0
+         state=present
+  register: swap_fstab
+
+- name: Mount swap
+  command: "swapon {{ swapfile.path }}"
+  when: swap_fstab|changed
+
+- name: set swapiness
+  lineinfile:
+    dest=/etc/sysctl.conf
+    regexp="^vm.swappiness"
+    line="vm.swappiness = {{ swapfile.swappiness }}"
+    state=present
+  notify: reload sysctl.conf
+
+- name: set vfs_cache_pressure
+  lineinfile:
+    dest=/etc/sysctl.conf
+    regexp="^vm.vfs_cache_pressure"
+    line="vm.vfs_cache_pressure = {{ swapfile.vfs_cache_pressure }}"
+    state=present
+  notify: reload sysctl.conf
