@@ -88,6 +88,8 @@ ruby_deps:
   - libtool
   - libxml2-dev
   - libxslt1-dev
+  - libxrender-dev
+  - libfontconfig-dev
   - openssl
   - sqlite3
   - subversion
@@ -95,3 +97,4 @@ ruby_deps:
   - zlib1g-dev
   - pkg-config
   - libpq-dev
+  - imagemagick
