@@ -16,5 +16,6 @@ server {
   error_log   {{ deploy_dir }}/log/nginx.error.log;
 
   passenger_enabled on;
+  passenger_min_instances {{ passenger.min_instances }};
   passenger_app_env production;
 }

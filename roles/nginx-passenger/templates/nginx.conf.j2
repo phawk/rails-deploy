@@ -14,6 +14,8 @@ http {
     passenger_nodejs /usr/bin/node;
     passenger_default_user {{ deploy_user }};
     passenger_friendly_error_pages off;
+    passenger_max_pool_size {{ passenger.max_pool_size }};
+    passenger_pre_start {{ passenger.pre_start_url }};
 
 
     ##

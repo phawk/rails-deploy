@@ -53,6 +53,11 @@ nginx:
   workers: 1                # workers ~= number of cores on machine
   worker_connections: 1024  # connections ~= value of ulimit -n
 
+passenger:
+  max_pool_size: 2
+  min_instances: 2
+  pre_start_url: https://myapp.com
+
 fail2ban:
   config:
     ignoreip: 127.0.0.1/8
