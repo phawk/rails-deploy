@@ -58,6 +58,14 @@ fail2ban:
     bantime: 600
     maxretry: 10
 
+# list of crons to add i.e.
+#
+# - name: Cancel or suspend inactive subscriptions
+#   minute: 30
+#   hour: 2
+#   job: 'cd /var/www/myapp/current && bin/rake daily_subscriptions_updates RAILS_ENV=production'
+cron_jobs: []
+
 ruby_deps:
   - autoconf
   - automake

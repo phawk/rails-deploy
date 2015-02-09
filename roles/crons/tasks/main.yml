@@ -1,0 +1,3 @@
+- name: Add cron jobs
+  cron: user="{{ deploy_user }}" name="{{ item.name }}" minute="{{ item.minute }}" hour="{{ item.hour }}" job="{{ item.job }}"
+  with_items: cron_jobs
