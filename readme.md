@@ -127,3 +127,4 @@ server '127.0.0.1', user: 'deploy', roles: %w{web app}
 
 - SSL Support
 - Memcached and redis
+- Common exports like EDITOR and RAILS_ENV for running rake tasks etc
