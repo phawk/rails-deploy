@@ -6,7 +6,8 @@ deploy_dir: '/var/www/app' # No trailing slash
 deploy_hostname: 'myapp.com'
 
 # SSH key to copy to the server for login
-ssh_public_key_file: '/Users/me/.ssh/id_rsa.pub'
+ssh_public_key_files:
+  - '/Users/me/.ssh/id_rsa.pub'
 
 # Server Timzone + Locale
 timezone: Europe/London

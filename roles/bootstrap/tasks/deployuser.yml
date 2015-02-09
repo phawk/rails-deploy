@@ -1,17 +1,12 @@
 ---
 # originally from: https://github.com/phred/5minbootstrap/
 
-# - name: Update APT package cache
-#   action: apt update_cache=yes
-
-# - name: Run apt-get upgrade
-#   action: command apt-get dist-upgrade
-
 - name: Add deployment user
   action: 'user name={{ deploy_user }} password={{ deploy_password }} generate_ssh_key=yes shell=/bin/bash'
 
-- name: Add authorized deploy key
-  action: "authorized_key user={{ deploy_user }} key=\"{{ lookup('file', ssh_public_key_file) }}\""
+- name: Add authorized deploy keys
+  action: "authorized_key user={{ deploy_user }} key=\"{{ lookup('file', item) }}\""
+  with_items: ssh_public_key_files
 
 - name: Remove sudo group rights
   action: lineinfile dest=/etc/sudoers regexp="^%sudo" state=absent
