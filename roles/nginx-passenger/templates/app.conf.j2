@@ -18,4 +18,6 @@ server {
   passenger_enabled on;
   passenger_min_instances {{ passenger.min_instances }};
   passenger_app_env production;
+  passenger_set_cgi_param HTTP_X_FORWARDED_FOR $proxy_add_x_forwarded_for;
+  passenger_set_cgi_param HTTP_X_REAL_IP $proxy_add_x_forwarded_for;
 }
