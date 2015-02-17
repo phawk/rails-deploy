@@ -6,8 +6,10 @@ Ansible provisioning to setup a pre-configured Ruby/Rails server that contains t
 - Installs node.js for asset pipeline
 - Nginx + phusion passenger for serving your app
 - PostgreSQL database
+- Setup some cron jobs to run rake tasks
 - Sets up ufw and fail2ban for basic security
 - Sets up swapon for when you run out of memory
+- Checkout the [changelog](CHANGELOG.md) for recent additions
 
 ## Prerequisites
 
@@ -16,6 +18,8 @@ Ansible provisioning to setup a pre-configured Ruby/Rails server that contains t
 - SSH into the server as root and ensure that is working from your local machine.
 
 ## Usage
+
+For each server you want to setup clone this repo. This allows you to keep the configuration around and deploy again at any time, or deploy multiple servers for some horizontal scailing (in this instance you will need a shared database server).
 
 ```sh
 # Copy the example vars file over to vars/all.yml
