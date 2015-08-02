@@ -11,18 +11,18 @@
   apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main'
 
 - name: Install PostgreSQL
-  apt: pkg=postgresql-9.3 state=latest update_cache=true
+  apt: pkg=postgresql-9.4 state=latest update_cache=true
 
 - name: Restart PostgreSQL
   command: service postgresql restart
 
 - name: Copy valid pg_hba.conf
-  template: src=pg_hba.conf.j2 dest=/etc/postgresql/9.3/main/pg_hba.conf
+  template: src=pg_hba.conf.j2 dest=/etc/postgresql/9.4/main/pg_hba.conf
   notify:
   - postgresql restart
 
 - name: Copy valid postgresql.conf
-  template: src=postgresql.conf.j2 dest=/etc/postgresql/9.3/main/postgresql.conf
+  template: src=postgresql.conf.j2 dest=/etc/postgresql/9.4/main/postgresql.conf
   notify:
   - postgresql restart
 
