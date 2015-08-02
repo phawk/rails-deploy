@@ -42,9 +42,9 @@ preinstall_gems:
 rbenv_makeopts: "" # Fill in if needed
 
 ruby_versions:
-  - 2.1.5
+  - 2.2.2
 
-ruby_default: "2.1.5"
+ruby_default: "2.2.2"
 
 # Nginx configuration
 nginx:

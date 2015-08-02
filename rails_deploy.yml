@@ -13,4 +13,5 @@
     - nodejs
     - nginx-passenger
     - postgres
+    - redis
     - crons
