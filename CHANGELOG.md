@@ -1,3 +1,16 @@
+# 23rd Aug 2015
+
+- Moved repo from personal account to my business Alternate Labs Ltd.
+
+# 2nd Aug 2015
+
+- Upgrade PostgreSQL to 9.4
+- Install redis by default
+
+# 26th Apr 2015
+
+- Update passenger_set_env for phusion passenger 5
+
 # 9th Feb 2015
 
 - Add configurable cron jobs to the server
